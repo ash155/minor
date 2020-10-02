@@ -1,15 +1,18 @@
 const { subscribe } = require("../../controllers/orderController");
 
+
 var products= JSON.parse(localStorage.getItem('cart'));
 var cartItems=[];
 var cart_n = document.getElementById('cart_n');
 var table= document.getElementById('table');
+var total=0;
 
 function tableHTML(i) {
     return `
             <tr>
                 <th scope="row">${i+1} </th>
                 <th><img style="width:90px;" src="${products[i].url}"></th>
+                <td>${products[i].name}</td>
                 <td>1</td>
                 <td>${products[i].price}</td>
             </tr>
@@ -55,7 +58,7 @@ function clean() {
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col">
-                <button id="brnClear" onclick="clean()" class="btn text-white btn-warning">
+                <button id="brnClean" onclick="clean()" class="btn text-white btn-warning">
                     Clean Shopping Cart
                 </button>
             </th>
@@ -68,7 +71,7 @@ function clean() {
             </th>
         </tr>   
     `;
-    products=JSON.parse(localStorage.getItem(`cart`));
+    products=JSON.parse(localStorage.getItem('cart'));
     cart_n.innerHTML=`[${products.length}]`;
 })();
 var from= document.getElementById('form1');
